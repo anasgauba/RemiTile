@@ -1,7 +1,7 @@
 public class Tile {
     private TileNums tileNums;
     private TileColors colors;
-    private boolean tileFace = true;
+    private boolean tileFace = false;
 
 
     public Tile(TileNums num, TileColors color) {
@@ -17,7 +17,7 @@ public class Tile {
     }
 
     public boolean isFaceUp() {
-        return tileFace;
+        return this.tileFace;
     }
 
     public void setFaceUp(boolean faceUp) {

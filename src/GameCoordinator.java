@@ -16,7 +16,13 @@ public class GameCoordinator extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        HumanPlayer humanPlayer = new HumanPlayer();
-        ComputerPlayer computerPlayer = new ComputerPlayer();
+        TilePool tilePool = new TilePool();
+        TileCards discardPile1 = new TileCards();
+        TileCards discardPile2 = new TileCards();
+
+        Player humanPlayer = new Player(discardPile1);
+        Player computerPlayer = new Player(discardPile2);
+
+        Display display = new Display(primaryStage);
     }
 }
