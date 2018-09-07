@@ -1,27 +1,24 @@
+import java.util.Collections;
+import java.util.LinkedList;
+
 /**
  * @version date: 2018-09-04
  * @author Anas Farooq Gauba
  */
 public class TilePool {
-
-    private Tile [] deckOfTiles;
-    private int numTiles;
+    private LinkedList<Tile> deckOfTiles;
 
     public TilePool() {
-        this.deckOfTiles = new Tile[56];
-        this.numTiles = 0;
+        this.deckOfTiles = new LinkedList<>();
     }
 
     public Tile getTop() {
-        if (numTiles > 0) {
-            return deckOfTiles[numTiles - 1];
-        }
-        return null;
+        return deckOfTiles.getFirst();
     }
 
     public void addTile(Tile tile) {
-        this.deckOfTiles[numTiles] = tile;
-        numTiles++;
+        this.deckOfTiles.addLast(tile);
+        this.deckOfTiles.addLast(tile);
     }
 
     public void fillTile() {
@@ -34,8 +31,10 @@ public class TilePool {
 
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < deckOfTiles.length; i++) {
-            str.append(deckOfTiles[i].tileNums);
+        for (Tile tile : deckOfTiles) {
+            str.append(tile.getNum());
+            str.append(", ");
+            str.append(tile.getColor());
             str.append('\n');
         }
         return str.toString();
@@ -44,43 +43,16 @@ public class TilePool {
 
 
     public void shuffle() {
-
-    }
-
-    public class Tile {
-        private TileNums tileNums;
-        private TileColors colors;
-        private boolean tileFace = true;
-
-        public Tile(TileNums num, TileColors color) {
-            this.tileNums = num;
-            this.colors = color;
-        }
-
-        public TileNums getNum() {
-            return tileNums;
-        }
-        public TileColors getColor() {
-            return colors;
-        }
-
-        public boolean isFaceUp() {
-            return tileFace;
-        }
-
-        public void setFaceUp(boolean faceUp) {
-            this.tileFace = faceUp;
-        }
+        Collections.shuffle(deckOfTiles);
     }
 
     public static void main(String[]args) {
         TilePool tilePool = new TilePool();
-//        System.out.println(tilePool);
+
         tilePool.fillTile();
-//        tilePool.getTop();
+        tilePool.shuffle();
 
         System.out.println(tilePool);
-//        System.out.println(tilePool);
 
     }
 }
