@@ -1,5 +1,3 @@
-import java.util.LinkedList;
-
 /**
  * @version date: 2018-09-04
  * @author Anas Farooq Gauba
@@ -7,16 +5,24 @@ import java.util.LinkedList;
 public class Player {
 
     TileCards hand;
-    TileCards discardPile;
+    GameCoordinator gameCoordinator;
 
-    public Player(TileCards discardPile) {
-        this.discardPile = discardPile;
+    public Player(GameCoordinator gameCoordinator) {
+        this.gameCoordinator = gameCoordinator;
         this.hand = new TileCards();
 
     }
 
-    public void play() {
+    public void addToHand(Tile tile) {
+        hand.addTile(tile);
+    }
 
+    public void discard() {
+        gameCoordinator.discard(hand.getTile(), this);
+    }
+
+    public int getHandsSize() {
+        return hand.size();
     }
 
 }

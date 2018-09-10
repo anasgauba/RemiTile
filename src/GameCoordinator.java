@@ -1,28 +1,110 @@
-import javafx.application.Application;
-import javafx.stage.Stage;
+import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  * @version date: 2018-09-04
  * @author Anas Farooq Gauba
  */
-public class GameCoordinator extends Application{
-    /**
-     * Launches the game.
-     * @param args arguments
-     */
-    public static void main(String[]args) {
-        launch(args);
+public class GameCoordinator {
+
+    TilePool tilePool = new TilePool();
+    TileCards discardPile1 = new TileCards();
+    TileCards discardPile2 = new TileCards();
+
+    Player humanPlayer = new Player(this);
+
+    ComputerPlayer computerPlayer = new ComputerPlayer(this);
+
+    boolean turn;
+
+    public GameCoordinator() {
+        this.turn = false;
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        TilePool tilePool = new TilePool();
-        TileCards discardPile1 = new TileCards();
-        TileCards discardPile2 = new TileCards();
+    public void gameSetUp() {
+        tilePool.fillTile();
+        System.out.println("tilepool before");
+        System.out.println(tilePool);
+        for (int i = 0; i < 14; i++) {
+            humanPlayer.addToHand(tilePool.getTile());
+        }
+        System.out.println("human hand ");
+        System.out.println(humanPlayer.hand);
 
-        Player humanPlayer = new Player(discardPile1);
-        Player computerPlayer = new Player(discardPile2);
+        for (int j = 0; j < 14; j++) {
+            computerPlayer.addToHand(tilePool.getTile());
+        }
+        System.out.println("computer hand ");
+        System.out.println(computerPlayer.hand);
+        System.out.println("tilepool after ");
+        System.out.println(tilePool);
 
-        Display display = new Display(primaryStage);
+//        if (turn) {
+//            computerPlayer.discard();
+//        }
+//        else {
+//            humanPlayer.discard();
+//        }
+
     }
+
+
+    public LinkedList<Tile> getHumanPlayersHand() {
+        return humanPlayer.hand.tiles;
+    }
+
+    public LinkedList<Tile> getComputerPlayersHand() {
+        return computerPlayer.hand.tiles;
+    }
+
+    public void isTilePoolEmpty() {
+        if (tilePool.isEmpty()) {
+            while (!(discardPile1.isEmpty())) {
+                tilePool.putBack(discardPile1.getTile());
+            }
+            while (!(discardPile2.isEmpty())) {
+                tilePool.putBack(discardPile2.getTile());
+            }
+            Collections.shuffle(tilePool.tiles);
+        }
+    }
+
+    public void discard(Tile tile, Player player) {
+        if (player == humanPlayer) {
+            discardPile1.addTile(tile);
+            tile.setFaceUp(true);
+            turn = true;
+            System.out.println("human's discard " + discardPile1);
+        }
+        else if (player == computerPlayer) {
+            discardPile2.addTile(tile);
+            tile.setFaceUp(true);
+            turn = false;
+        }
+    }
+
+    public void playerOptions(String str) {
+        if (str == "tilePool") {
+            if (turn) {
+                computerPlayer.addToHand(tilePool.getTile());
+            }
+            else {
+                humanPlayer.addToHand(tilePool.getTile());
+            }
+        }
+        else if (str == "discard") {
+            if (turn) {
+                computerPlayer.addToHand(discardPile1.getTile());
+            }
+            else {
+                humanPlayer.addToHand(discardPile2.getTile());
+            }
+        }
+    }
+
+
+
+//    public Tile displayTopTiles() {
+//
+//    }
 }

@@ -3,5 +3,11 @@
  * @author Anas Farooq Gauba
  */
 public enum TileColors {
-    RED, YELLOW, GREEN, BLUE
+    RED("R"), YELLOW("Y"), GREEN("G"), BLUE("B");
+
+    private final String str;
+
+    private TileColors(String str) {
+        this.str = str;
+    }
 }

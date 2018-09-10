@@ -7,6 +7,11 @@ import java.util.LinkedList;
  */
 public class TilePool extends TileCards {
 
+
+    public void putBack(Tile tile) {
+        this.tiles.addLast(tile);
+    }
+
     @Override
     /**
      *
@@ -16,10 +21,6 @@ public class TilePool extends TileCards {
         this.tiles.addLast(tile);
     }
 
-    public Tile getTop() {
-        return tiles.getFirst();
-    }
-
     public void fillTile() {
         for (TileColors colors : TileColors.values()) {
             for (TileNums nums : TileNums.values()) {
@@ -27,15 +28,5 @@ public class TilePool extends TileCards {
             }
         }
         Collections.shuffle(tiles);
-    }
-
-    public static void main(String[]args) {
-        TilePool tilePool = new TilePool();
-
-        tilePool.fillTile();
-//        tilePool.shuffle();
-
-        System.out.println(tilePool);
-
     }
 }

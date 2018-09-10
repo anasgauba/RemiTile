@@ -17,6 +17,15 @@ public class TileCards {
     public Tile getTile() {
         return this.tiles.remove();
     }
+    public Tile getTop() {
+        return tiles.getFirst();
+    }
+    public boolean isEmpty() {
+        return tiles.isEmpty();
+    }
+    public int size() {
+        return this.tiles.size();
+    }
     public String toString() {
         StringBuilder str = new StringBuilder();
         for (Tile tile : tiles) {
