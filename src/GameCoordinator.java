@@ -32,11 +32,16 @@ public class GameCoordinator {
         System.out.println("human hand ");
         System.out.println(humanPlayer.hand);
 
-        sortForSameValue(humanPlayer.hand);
+        System.out.println("run is " + isRun(humanPlayer.hand));
+//        System.out.println("set is " + isSet(humanPlayer.hand));
+
+//        sortForSameColor(humanPlayer.hand);
+//        sortForSameValue(humanPlayer.hand);
 
         for (int j = 0; j < 14; j++) {
             computerPlayer.addToHand(tilePool.getTile());
         }
+        sortForSameValue(computerPlayer.hand);
         System.out.println("computer hand ");
         System.out.println(computerPlayer.hand);
         System.out.println("tilepool after ");
@@ -146,14 +151,53 @@ public class GameCoordinator {
         System.out.println(hand);
     }
 
-    public void isRun(TileCards hand) {
-        for (int i = 0; i < hand.size(); i++) {
-
+    public boolean isRun(TileCards hand) {
+        int count = 0;
+        boolean run = false;
+        sortForSameColor(hand);
+        for (int i = 0; i < hand.size() - 1; i++) {
+            System.out.println("print i = " + i);
+            if (hand.tiles.get(i).getNum().toInt() < hand.tiles.get(i + 1)
+                    .getNum().toInt() && hand.tiles.get(i).getColor().toColor
+                    () == hand.tiles.get(i + 1).getColor().toColor()) {
+                count++;
+                System.out.println("printing count " + count + " at i = " + i);
+            }
+            else if (!(hand.tiles.get(i).getNum().toInt() < hand.tiles.get(i
+                    + 1)
+                    .getNum().toInt()) && !(hand.tiles.get(i).getColor().toColor
+                    () == hand.tiles.get(i + 1).getColor().toColor())) {
+                count = 0;
+            }
+            else if (!(hand.tiles.get(i).getNum().toInt() < hand.tiles.get(i
+                    + 1)
+                    .getNum().toInt()) && hand.tiles.get(i).getColor().toColor
+                    () == hand.tiles.get(i + 1).getColor().toColor()) {
+                count = 0;
+            }
+            if (count >= 2) {
+                run = true;
+            }
         }
+        return run;
     }
 
-    public void isSet(TileCards hand) {
-
+    public boolean isSet(TileCards hand) {
+        int count = 0;
+        boolean set = false;
+        sortForSameValue(hand);
+        for (int i = 0 ; i < hand.size() - 1; i++) {
+            if (hand.tiles.get(i).getNum() == hand.tiles.get(i + 1).getNum()
+                    && hand.tiles.get(i).getColor() != hand.tiles.get(i + 1)
+                    .getColor()) {
+                count++;
+                if (count == 3 || count == 4) {
+                    set = true;
+                }
+            }
+//            count = 0;
+        }
+        return set;
     }
 
     public void checkForWin(TileCards hand) {
