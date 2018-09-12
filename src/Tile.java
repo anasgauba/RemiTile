@@ -3,10 +3,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-
-import javax.swing.text.html.ImageView;
-import javax.xml.soap.Node;
 
 /**
  * Creates one tile with a color and a number.
@@ -32,12 +28,12 @@ public class Tile extends Pane {
         canvas.setWidth(60);
         canvas.setHeight(100);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setStroke(Color.BLACK);
-        gc.setFill(Color.GRAY);
-        gc.fillRect(0,0,60,100);
+        gc.setFill(Color.TURQUOISE);
+        gc.fillRect(1,1,58,98);
         gc.setFill(colors.toColor());
-        gc.fillText(num.toString(), Math.round(canvas.getWidth()/2), Math
-                .round(canvas.getHeight()/2));
+        gc.fillText(num.toString(), Math.round(canvas.getWidth()/2 - 5), Math
+                .round(canvas.getHeight()/2) - 3);
+//        gc.setStroke(Color.BLACK);
         this.setPrefSize(60, 100);
         this.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
@@ -45,7 +41,7 @@ public class Tile extends Pane {
 //        this.setBackground(new Background(new BackgroundFill(Color.BLUE,
 //                CornerRadii.EMPTY, Insets.EMPTY)));
         this.getChildren().add(canvas);
-        this.setPadding(new Insets(10));
+//        this.setPadding(new Insets(10));
 
     }
 
@@ -80,4 +76,5 @@ public class Tile extends Pane {
     public void setFaceUp(boolean faceUp) {
         this.tileFace = faceUp;
     }
+
 }

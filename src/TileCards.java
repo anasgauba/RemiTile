@@ -18,7 +18,7 @@ public class TileCards {
         return this.tiles.remove();
     }
     public Tile getTop() {
-        return tiles.getFirst();
+        return tiles.getLast();
     }
     public boolean isEmpty() {
         return tiles.isEmpty();
