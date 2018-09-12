@@ -1,4 +1,5 @@
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 /**
@@ -31,6 +32,8 @@ public class GameCoordinator {
         System.out.println("human hand ");
         System.out.println(humanPlayer.hand);
 
+        sortForSameValue(humanPlayer.hand);
+
         for (int j = 0; j < 14; j++) {
             computerPlayer.addToHand(tilePool.getTile());
         }
@@ -38,6 +41,8 @@ public class GameCoordinator {
         System.out.println(computerPlayer.hand);
         System.out.println("tilepool after ");
         System.out.println(tilePool);
+
+        turn = false;
 
 //        if (turn) {
 //            computerPlayer.discard();
@@ -48,13 +53,24 @@ public class GameCoordinator {
 
     }
 
+    public LinkedList<Tile> getTilePool() {
+        return tilePool.tiles;
+    }
 
     public LinkedList<Tile> getHumanPlayersHand() {
-        return humanPlayer.hand.tiles;
+        return humanPlayer.getMyHand();
+    }
+
+    public LinkedList<Tile> getDiscardPile1() {
+        return discardPile1.tiles;
+    }
+
+    public LinkedList<Tile> getDiscardPile2() {
+        return discardPile2.tiles;
     }
 
     public LinkedList<Tile> getComputerPlayersHand() {
-        return computerPlayer.hand.tiles;
+        return computerPlayer.getMyHand();
     }
 
     public void isTilePoolEmpty() {
@@ -68,6 +84,7 @@ public class GameCoordinator {
             Collections.shuffle(tilePool.tiles);
         }
     }
+
 
     public void discard(Tile tile, Player player) {
         if (player == humanPlayer) {
@@ -102,9 +119,45 @@ public class GameCoordinator {
         }
     }
 
+    /**
+     * Sorts the hand of the player based on the same
+     * color. Using an enhanced version of
+     * (Collections.sort(hand.tiles, (Tile t1, Tile t2) -> t1.getColor()
+     * .compareTo(t2.getColor())))
+     * Collections.sort can also be written as list.sort because
+     * list is a collection.
+     * @param hand of any player which needs to be sorted.
+     */
+    public void sortForSameColor(TileCards hand) {
+        hand.tiles.sort(Comparator.comparing(Tile::getColor));
+        System.out.println("sorted based on color ");
+        System.out.println(hand);
 
+    }
 
-//    public Tile displayTopTiles() {
-//
-//    }
+    /**
+     * Sorts the hand of the player based on the same number.
+     *
+     * @param hand of any player which needs to be sorted.
+     */
+    public void sortForSameValue(TileCards hand) {
+        hand.tiles.sort(Comparator.comparing(Tile::getNum));
+        System.out.println("sorted based on values ");
+        System.out.println(hand);
+    }
+
+    public void isRun(TileCards hand) {
+        for (int i = 0; i < hand.size(); i++) {
+
+        }
+    }
+
+    public void isSet(TileCards hand) {
+
+    }
+
+    public void checkForWin(TileCards hand) {
+//        for (int i = 0; i < )
+
+    }
 }

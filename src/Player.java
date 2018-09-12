@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * @version date: 2018-09-04
  * @author Anas Farooq Gauba
@@ -21,8 +23,15 @@ public class Player {
         gameCoordinator.discard(hand.getTile(), this);
     }
 
+    public LinkedList<Tile> getMyHand() {
+        return hand.tiles;
+    }
+
     public int getHandsSize() {
         return hand.size();
     }
 
+    public void getHand() {
+        gameCoordinator.checkForWin(hand);
+    }
 }
