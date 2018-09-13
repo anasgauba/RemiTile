@@ -1,6 +1,4 @@
 import java.util.Collections;
-import java.util.LinkedList;
-
 /**
  * Class for creating a deck of tiles. Extends parent
  * class TileCards to use the same methods that already
@@ -10,7 +8,7 @@ import java.util.LinkedList;
  * @author Anas Farooq Gauba
  */
 public class TilePool extends TileCards {
-
+    
     /**
      * Adds the tile back in the pool.
      * @param tile to be added again in the tilePool

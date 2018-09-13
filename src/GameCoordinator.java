@@ -22,6 +22,10 @@ public class GameCoordinator {
         this.turn = false;
     }
 
+    public void tileClick(String tileNums, String tileColor) {
+
+    }
+
     public void gameSetUp() {
         tilePool.fillTile();
         System.out.println("tilepool before");
@@ -32,7 +36,7 @@ public class GameCoordinator {
         System.out.println("human hand ");
         System.out.println(humanPlayer.hand);
 
-        System.out.println("run is " + isRun(humanPlayer.hand));
+//        System.out.println("run is " + isRun(humanPlayer.hand));
 //        System.out.println("set is " + isSet(humanPlayer.hand));
 
 //        sortForSameColor(humanPlayer.hand);
@@ -41,7 +45,7 @@ public class GameCoordinator {
         for (int j = 0; j < 14; j++) {
             computerPlayer.addToHand(tilePool.getTile());
         }
-        sortForSameValue(computerPlayer.hand);
+//        sortForSameValue(computerPlayer.hand);
         System.out.println("computer hand ");
         System.out.println(computerPlayer.hand);
         System.out.println("tilepool after ");
@@ -108,9 +112,12 @@ public class GameCoordinator {
     public void playerOptions(String str) {
         if (str == "tilePool") {
             if (turn) {
+                System.out.println("Computer !!!!");
                 computerPlayer.addToHand(tilePool.getTile());
+                computerPlayer.hand.tiles.getLast();
             }
             else {
+                System.out.println("Human !!!!");
                 humanPlayer.addToHand(tilePool.getTile());
             }
         }

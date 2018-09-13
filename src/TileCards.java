@@ -30,7 +30,7 @@ public class TileCards {
      * @return tile to be removed.
      */
     public Tile getTile() {
-        return this.tiles.remove();
+        return this.tiles.removeLast();
     }
 
     /**

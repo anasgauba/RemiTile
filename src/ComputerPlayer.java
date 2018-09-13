@@ -3,7 +3,7 @@
  * @author Anas Farooq Gauba
  */
 public class ComputerPlayer extends Player {
-    TilePool tile;
+    TilePool tilePool;
 
     public ComputerPlayer(GameCoordinator gameCoordinator) {
         super(gameCoordinator);
@@ -11,7 +11,7 @@ public class ComputerPlayer extends Player {
 
 
     public void makeMove() {
-        this.addToHand(tile.getTile());
+        this.addToHand(tilePool.getTile());
         this.discard();
     }
 
