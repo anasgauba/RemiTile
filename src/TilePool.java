@@ -8,7 +8,7 @@ import java.util.Collections;
  * @author Anas Farooq Gauba
  */
 public class TilePool extends TileCards {
-    
+
     /**
      * Adds the tile back in the pool.
      * @param tile to be added again in the tilePool
@@ -23,6 +23,7 @@ public class TilePool extends TileCards {
      * the deck size.
      */
     public void addTile(Tile tile) {
+        tile.setFaceUp(true);
         this.tiles.addLast(tile);
         this.tiles.addLast(tile);
     }

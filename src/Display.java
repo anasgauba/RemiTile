@@ -3,7 +3,9 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -20,26 +22,26 @@ public class Display extends Application {
     Button rules = new Button("Rules");
     Button newGame = new Button("New Game");
     GameCoordinator gameCoordinator = new GameCoordinator();
-    Pane root = new Pane();
-    BorderPane borderPane = new BorderPane();
-    VBox vBox = new VBox();
+    Pane root;
+    BorderPane borderPane;
+    VBox vBox;
 
-    StackPane tilePane = new StackPane();
-    Region emptyRegion = new Region();
+    StackPane tilePane;
+    Region emptyRegion;
 
-    HBox humanHbox = new HBox();
-    HBox compHbox = new HBox();
+    HBox humanHbox;
+    HBox compHbox;
 
-    StackPane humanDiscardStack = new StackPane();
-    StackPane compDiscardStack = new StackPane();
-    StackPane humanScoreStack = new StackPane();
-    StackPane compScoreStack = new StackPane();
+    StackPane humanDiscardStack;
+    StackPane compDiscardStack;
+    StackPane humanScoreStack;
+    StackPane compScoreStack;
 
-    LinkedList<Tile> humanHand = gameCoordinator.getHumanPlayersHand();
-    LinkedList<Tile> computerHand = gameCoordinator.getComputerPlayersHand();
-    LinkedList<Tile> tilePool = gameCoordinator.getTilePool();
-    LinkedList<Tile> humanDiscard = gameCoordinator.getDiscardPile1();
-    LinkedList<Tile> compDiscard = gameCoordinator.getDiscardPile2();
+    LinkedList<Tile> humanHand;
+    LinkedList<Tile> computerHand;
+    LinkedList<Tile> tilePool;
+    LinkedList<Tile> humanDiscard;
+    LinkedList<Tile> compDiscard;
 
     /**
      * Launches the game.
@@ -52,8 +54,9 @@ public class Display extends Application {
     public void addTilesToHuman() {
         humanHbox.setSpacing(5);
         for (int i = 0; i< humanHand.size(); i++) {
-            humanHbox.getChildren().add(new Tile(humanHand.get(i).getNum(),
-                    humanHand.get(i).getColor()));
+            humanHbox.getChildren().add(new StackPane(new Tile(humanHand.get(i)
+                            .getNum(),
+                    humanHand.get(i).getColor())));
 //            humanHbox.setAlignment(Pos.CENTER);
             humanHbox.setBorder(new Border(new BorderStroke(Color.GREEN,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
@@ -69,20 +72,44 @@ public class Display extends Application {
         }
     }
 
+    public void drawTilePool() {
+        for (Tile tile : tilePool) {
+            tilePane.setPrefSize(160, 300);
+            tilePane.setPadding(new Insets(246, 58,50,40));
+            tilePane.setBorder(new Border(new BorderStroke(Color.RED,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
+                    .DEFAULT, Insets.EMPTY)));
+            tilePane.getChildren().add(new Tile(tile.getNum(), tile.getColor()));
+        }
+    }
+
     public void startOfGame() {
 
-        vBox.setSpacing(200);
+        root = new Pane();
+        borderPane = new BorderPane();
+        vBox = new VBox();
 
+        tilePane = new StackPane();
+        emptyRegion = new Region();
+
+        humanHbox = new HBox();
+        compHbox = new HBox();
+
+        humanDiscardStack = new StackPane();
+        compDiscardStack = new StackPane();
+        humanScoreStack = new StackPane();
+        compScoreStack = new StackPane();
+
+        humanHand = gameCoordinator.getHumanPlayersHand();
+        System.out.println("human hand size 2 " + humanHand.size());
+        computerHand = gameCoordinator.getComputerPlayersHand();
+        tilePool = gameCoordinator.getTilePool();
+        humanDiscard = gameCoordinator.getDiscardPile1();
+        compDiscard = gameCoordinator.getDiscardPile2();
 
 
         borderPane.setPrefSize(1280, 600);
         borderPane.setRight(vBox);
-        vBox.getChildren().addAll(rules, newGame);
-
-        vBox.setPrefSize(150, 300);
-        vBox.setBorder(new Border(new BorderStroke(Color.RED,
-                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
-                .DEFAULT, Insets.EMPTY)));
 
         borderPane.setBottom(humanHbox);
         humanHbox.getChildren().add(humanDiscardStack);
@@ -128,14 +155,7 @@ public class Display extends Application {
 //        compScoreStack.setBorder(new Border(new BorderStroke(Color.BLACK,
 //                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
 //                .DEFAULT, Insets.EMPTY)));
-        for (Tile tile : tilePool) {
-            tilePane.setPrefSize(160, 300);
-            tilePane.setPadding(new Insets(246, 58,50,40));
-            tilePane.setBorder(new Border(new BorderStroke(Color.RED,
-                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
-                    .DEFAULT, Insets.EMPTY)));
-            tilePane.getChildren().add(new Tile(tile.getNum(), tile.getColor()));
-        }
+        drawTilePool();
     }
 
     @Override
@@ -156,7 +176,23 @@ public class Display extends Application {
                             humanHbox.getChildren().add(new Tile(humanHand.getLast()
                                     .getNum(),
                                     humanHand.getLast().getColor()));
+                            humanHbox.getChildren().remove(6);
+                            tilePane.getChildren().remove(tilePool.removeLast());
+                            drawTilePool();
+                            for (Tile tile : humanDiscard) {
+                                humanDiscardStack.setPrefSize(150, 100);
+                                humanDiscardStack.setBorder(new Border(new BorderStroke(Color.YELLOW,
+                                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
+                                        .DEFAULT, Insets.EMPTY)));
+                                humanDiscardStack.getChildren().add(new Tile(tile.getNum(), tile.getColor()));
+                            }
                             gameCoordinator.turn = true;
+                        }
+                    });
+                    compDiscardStack.setOnMousePressed(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            System.out.println("Click!");
                         }
                     });
                 }
@@ -168,15 +204,41 @@ public class Display extends Application {
                             compHbox.getChildren().add(new Tile(computerHand.getLast()
                                     .getNum(),
                                     computerHand.getLast().getColor()));
+//                            compHbox.getChildren().remove();
+                            tilePane.getChildren().remove(tilePool.removeLast());
+                            drawTilePool();
                             gameCoordinator.turn = false;
                         }
                     });
                 }
+                rules.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Rules");
+                        alert.setHeaderText("Rules of the Game");
+                        alert.setContentText("Each player takes turns.");
+                        alert.showAndWait();
+
+                    }
+                });
+//                newGame.setOnMousePressed(new EventHandler<MouseEvent>() {
+//                    @Override
+//                    public void handle(MouseEvent event) {
+//                        humanHbox.getChildren().removeAll();
+//                        compHbox.getChildren().removeAll();
+//                        humanHand.clear();
+//                        computerHand.clear();
+//                        gameCoordinator.gameSetUp();
+//                        startOfGame();
+//                    }
+//                });
 
 
             }
         };
         timer.start();
+
 
 
 //        for (Tile tile : humanDiscard) {
@@ -193,14 +255,15 @@ public class Display extends Application {
 //            tilePane.setPrefSize(160, 600);
 //            tilePane.getChildren().add(rectangle);
 //        }
+        vBox.setSpacing(200);
+        vBox.getChildren().addAll(rules, newGame);
 
-//        newGame.setOnMousePressed(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                gameCoordinator.gameSetUp();
-//                startOfGame();
-//            }
-//        });
+        vBox.setPrefSize(150, 300);
+        vBox.setBorder(new Border(new BorderStroke(Color.RED,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
+                .DEFAULT, Insets.EMPTY)));
+
+
 
 
         root.getChildren().addAll(borderPane);

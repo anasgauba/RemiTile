@@ -15,8 +15,8 @@ import javafx.scene.paint.Color;
 public class Tile extends Pane {
     private TileNums tileNums;
     private TileColors colors;
-    static int num= 0;
-    private boolean tileFace = false;
+//    static int num= 0;
+    private boolean tileFace;
     GameCoordinator gameCoordinator;
 
     /**
@@ -37,15 +37,15 @@ public class Tile extends Pane {
         gc.setFill(colors.toColor());
         gc.fillText(num.toString(), Math.round(canvas.getWidth()/2 - 5), Math
                 .round(canvas.getHeight()/2) - 3);
-        this.setOnMousePressed(new EventHandler<MouseEvent>() {
-            int num=0;
-            @Override
-            public void handle(MouseEvent event) {
-                //gameCoordinator.tileClick(tileNums.toString(), colors
-                        //.toString());
-                System.out.println("I am clicked");
-            }
-        });
+//        this.setOnMousePressed(new EventHandler<MouseEvent>() {
+//            int num=0;
+//            @Override
+//            public void handle(MouseEvent event) {
+//                //gameCoordinator.tileClick(tileNums.toString(), colors
+//                        //.toString());
+//                System.out.println("I am clicked");
+//            }
+//        });
 //        gc.setStroke(Color.BLACK);
         this.setPrefSize(60, 100);
         this.setBorder(new Border(new BorderStroke(Color.BLACK,
@@ -54,8 +54,6 @@ public class Tile extends Pane {
 //        this.setBackground(new Background(new BackgroundFill(Color.BLUE,
 //                CornerRadii.EMPTY, Insets.EMPTY)));
         this.getChildren().add(canvas);
-//        this.setPadding(new Insets(10));
-
     }
 
     /**

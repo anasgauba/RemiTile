@@ -20,7 +20,7 @@ public class Player {
     }
 
     public void discard() {
-        gameCoordinator.discard(hand.getTile(), this);
+        gameCoordinator.discard(hand.tiles.remove(5), this);
     }
 
     public LinkedList<Tile> getMyHand() {

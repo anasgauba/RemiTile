@@ -100,12 +100,14 @@ public class GameCoordinator {
             discardPile1.addTile(tile);
             tile.setFaceUp(true);
             turn = true;
+            System.out.println("humans hand after discard " + humanPlayer.hand);
             System.out.println("human's discard " + discardPile1);
         }
         else if (player == computerPlayer) {
             discardPile2.addTile(tile);
             tile.setFaceUp(true);
             turn = false;
+            System.out.println("computer's discard " + discardPile2);
         }
     }
 
@@ -114,11 +116,12 @@ public class GameCoordinator {
             if (turn) {
                 System.out.println("Computer !!!!");
                 computerPlayer.addToHand(tilePool.getTile());
-                computerPlayer.hand.tiles.getLast();
+                computerPlayer.discardTheTile();
             }
             else {
                 System.out.println("Human !!!!");
                 humanPlayer.addToHand(tilePool.getTile());
+                humanPlayer.discard();
             }
         }
         else if (str == "discard") {
