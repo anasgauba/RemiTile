@@ -19,8 +19,8 @@ public class Player {
         hand.addTile(tile);
     }
 
-    public void discard() {
-        gameCoordinator.discard(hand.tiles.remove(5), this);
+    public void discard(int value) {
+        gameCoordinator.discard(hand.tiles.remove(value), this);
     }
 
     public LinkedList<Tile> getMyHand() {

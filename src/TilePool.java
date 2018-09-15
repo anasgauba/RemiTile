@@ -10,7 +10,7 @@ import java.util.Collections;
 public class TilePool extends TileCards {
 
     /**
-     * Adds the tile back in the pool.
+     * Adds each tile back in the pool when it gets empty.
      * @param tile to be added again in the tilePool
      */
     public void putBack(Tile tile) {

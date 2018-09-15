@@ -19,29 +19,27 @@ import java.util.LinkedList;
  */
 public class Display extends Application {
 
-    Button rules = new Button("Rules");
-    Button newGame = new Button("New Game");
-    GameCoordinator gameCoordinator = new GameCoordinator();
-    Pane root;
-    BorderPane borderPane;
-    VBox vBox;
+    private Button rules = new Button("Rules");
+//    Button newGame = new Button("New Game");
+    private GameCoordinator gameCoordinator = new GameCoordinator();
+    private Pane root;
+    private BorderPane borderPane;
+    private VBox vBox;
 
-    StackPane tilePane;
-    Region emptyRegion;
+    private StackPane tilePane;
+    private Region emptyRegion;
 
-    HBox humanHbox;
-    HBox compHbox;
+    private HBox humanHbox;
+    private HBox compHbox;
 
-    StackPane humanDiscardStack;
-    StackPane compDiscardStack;
-    StackPane humanScoreStack;
-    StackPane compScoreStack;
+    private StackPane humanDiscardStack;
+    private StackPane compDiscardStack;
 
-    LinkedList<Tile> humanHand;
-    LinkedList<Tile> computerHand;
-    LinkedList<Tile> tilePool;
-    LinkedList<Tile> humanDiscard;
-    LinkedList<Tile> compDiscard;
+    private LinkedList<Tile> humanHand;
+    private LinkedList<Tile> computerHand;
+    private LinkedList<Tile> tilePool;
+    private LinkedList<Tile> humanDiscard;
+    private LinkedList<Tile> compDiscard;
 
     /**
      * Launches the game.
@@ -51,28 +49,41 @@ public class Display extends Application {
         launch(args);
     }
 
-    public void addTilesToHuman() {
+    /**
+     * Helper method to draw tiles for human player.
+     */
+    private void addTilesToHuman() {
         humanHbox.setSpacing(5);
-        for (int i = 0; i< humanHand.size(); i++) {
+        for (int i = 0; i < humanHand.size(); i++) {
             humanHbox.getChildren().add(new StackPane(new Tile(humanHand.get(i)
-                            .getNum(),
+                    .getNum(),
                     humanHand.get(i).getColor())));
-//            humanHbox.setAlignment(Pos.CENTER);
             humanHbox.setBorder(new Border(new BorderStroke(Color.GREEN,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                     .DEFAULT, Insets.EMPTY)));
         }
+        humanHbox.setBackground(new Background(new BackgroundFill(Color
+                .rgb(72, 103, 178), CornerRadii.EMPTY, Insets.EMPTY)));
 
     }
-    public void addTilesToComp() {
+
+    /**
+     * Helper method to draw tiles for computer player.
+     */
+    private void addTilesToComp() {
         compHbox.setSpacing(5);
         for (int i = 0; i < computerHand.size(); i++) {
             compHbox.getChildren().add(new Tile(computerHand.get(i).getNum(),
                     computerHand.get(i).getColor()));
         }
+        compHbox.setBackground(new Background(new BackgroundFill(Color
+                .rgb(72, 103, 178),CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
-    public void drawTilePool() {
+    /**
+     * Helper method to draw tiles in tilepool (deck of tiles).
+     */
+    private void drawTilePool() {
         for (Tile tile : tilePool) {
             tilePane.setPrefSize(160, 300);
             tilePane.setPadding(new Insets(246, 58,50,40));
@@ -81,8 +92,41 @@ public class Display extends Application {
                     .DEFAULT, Insets.EMPTY)));
             tilePane.getChildren().add(new Tile(tile.getNum(), tile.getColor()));
         }
+        tilePane.setBackground(new Background(new BackgroundFill(Color
+                .rgb(72, 103, 178),CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
+    /**
+     * Helper method to draw discard area for human player.
+     */
+    private void drawHumanDiscardStack() {
+        for (Tile tile : humanDiscard) {
+            humanDiscardStack.setPrefSize(150, 100);
+            humanDiscardStack.setBorder(new Border(new BorderStroke(Color.YELLOW,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
+                    .DEFAULT, Insets.EMPTY)));
+            humanDiscardStack.getChildren().add(new Tile(tile.getNum(), tile.getColor()));
+        }
+    }
+    /**
+     * Helper method to draw discard area for computer player.
+     */
+    private void drawCompDiscardStack() {
+        for (Tile tile : compDiscard) {
+            compDiscardStack.setPrefSize(150, 100);
+            compDiscardStack.setBorder(new Border(new BorderStroke(Color
+                    .YELLOW,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
+                    .DEFAULT, Insets.EMPTY)));
+            compDiscardStack.getChildren().add(new Tile(tile.getNum(),
+                    tile.getColor()));
+        }
+    }
+
+    /**
+     * Setting up the game, drawing panels, and layout
+     * draws the layout.
+     */
     public void startOfGame() {
 
         root = new Pane();
@@ -97,11 +141,8 @@ public class Display extends Application {
 
         humanDiscardStack = new StackPane();
         compDiscardStack = new StackPane();
-        humanScoreStack = new StackPane();
-        compScoreStack = new StackPane();
 
         humanHand = gameCoordinator.getHumanPlayersHand();
-        System.out.println("human hand size 2 " + humanHand.size());
         computerHand = gameCoordinator.getComputerPlayersHand();
         tilePool = gameCoordinator.getTilePool();
         humanDiscard = gameCoordinator.getDiscardPile1();
@@ -119,46 +160,44 @@ public class Display extends Application {
 
         borderPane.setLeft(tilePane);
 
-//        BorderPane.setAlignment(emptyRegion, Pos.CENTER);
         borderPane.setCenter(emptyRegion);
 
-//        emptyRegion.setPrefSize(1090,140);
-
+        emptyRegion.setBackground(new Background(new BackgroundFill(Color
+         .rgb(72, 103, 178),CornerRadii.EMPTY, Insets.EMPTY)));
         emptyRegion.setBorder(new Border(new BorderStroke(Color.DARKBLUE,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                 .DEFAULT, Insets.EMPTY)));
 
-//        humanDiscardStack.setAlignment(Pos.CENTER_LEFT);
+        humanDiscardStack.setBackground(new Background(new BackgroundFill(Color
+                .rgb(72, 103, 178),CornerRadii.EMPTY, Insets.EMPTY)));
         humanDiscardStack.setPrefSize(150, 100);
         humanDiscardStack.setBorder(new Border(new BorderStroke(Color.YELLOW,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                 .DEFAULT, Insets.EMPTY)));
 
+        compDiscardStack.setBackground(new Background(new BackgroundFill(Color
+                .rgb(72, 103, 178),CornerRadii.EMPTY, Insets.EMPTY)));
         compDiscardStack.setPrefSize(150, 100);
-        compDiscardStack.setBorder(new Border(new BorderStroke(Color.BLACK,
+        compDiscardStack.setBorder(new Border(new BorderStroke(Color.RED,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                 .DEFAULT, Insets.EMPTY)));
 
         addTilesToHuman();
 
-//        humanHbox.getChildren().add(humanScoreStack);
-////        humanScoreStack.setAlignment(Pos.CENTER);
-//        humanScoreStack.setPrefSize(150, 100);
-//        humanScoreStack.setBorder(new Border(new BorderStroke(Color.YELLOW,
-//                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
-//                .DEFAULT, Insets.EMPTY)));
-
         addTilesToComp();
 
-//        compHbox.getChildren().add(compScoreStack);
-//        compScoreStack.setPrefSize(150, 100);
-//        compScoreStack.setBorder(new Border(new BorderStroke(Color.BLACK,
-//                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
-//                .DEFAULT, Insets.EMPTY)));
         drawTilePool();
     }
 
     @Override
+    /**
+     * Initally, sets the game, give each player 14 tiles.
+     * Human takes first turn, he has the option of either picking
+     * up from the computer's discard pile or from the tilePool, then discard
+     * the tile. Computer player picks from tilePool and discards the tile
+     * after. Using mouse events to detect a human clicked. Also, have a dialog
+     * box for the rules of the game.
+     */
     public void start(Stage primaryStage) throws Exception {
 
 
@@ -176,89 +215,65 @@ public class Display extends Application {
                             humanHbox.getChildren().add(new Tile(humanHand.getLast()
                                     .getNum(),
                                     humanHand.getLast().getColor()));
-                            humanHbox.getChildren().remove(6);
                             tilePane.getChildren().remove(tilePool.removeLast());
                             drawTilePool();
-                            for (Tile tile : humanDiscard) {
-                                humanDiscardStack.setPrefSize(150, 100);
-                                humanDiscardStack.setBorder(new Border(new BorderStroke(Color.YELLOW,
-                                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
-                                        .DEFAULT, Insets.EMPTY)));
-                                humanDiscardStack.getChildren().add(new Tile(tile.getNum(), tile.getColor()));
-                            }
+                            humanHbox.getChildren().remove(6);
+                            drawHumanDiscardStack();
                             gameCoordinator.turn = true;
                         }
                     });
                     compDiscardStack.setOnMousePressed(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
-                            System.out.println("Click!");
+                            gameCoordinator.playerOptions("discard");
+                            humanHbox.getChildren().add(new Tile(humanHand.getLast()
+                                    .getNum(),
+                                    humanHand.getLast().getColor()));
+                            compDiscardStack.getChildren().remove(compDiscard.removeLast());
+                            drawCompDiscardStack();
+                            humanHbox.getChildren().remove(6);
+
+                            gameCoordinator.turn = true;
+                        }
+                    });
+                    humanHbox.setOnMousePressed(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+
                         }
                     });
                 }
                 else {
-                    tilePane.setOnMousePressed(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            gameCoordinator.playerOptions("tilePool");
-                            compHbox.getChildren().add(new Tile(computerHand.getLast()
-                                    .getNum(),
-                                    computerHand.getLast().getColor()));
-//                            compHbox.getChildren().remove();
-                            tilePane.getChildren().remove(tilePool.removeLast());
-                            drawTilePool();
-                            gameCoordinator.turn = false;
-                        }
-                    });
+                    gameCoordinator.playerOptions("tilePool");
+                    compHbox.getChildren().add(new Tile(computerHand.getLast
+                            ().getNum(), computerHand.getLast().getColor()));
+                    tilePane.getChildren().remove(tilePool.removeLast());
+                    compHbox.getChildren().remove(gameCoordinator.computerDiscarded());
+                    drawTilePool();
+                    drawCompDiscardStack();
                 }
-                rules.setOnMousePressed(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Rules");
-                        alert.setHeaderText("Rules of the Game");
-                        alert.setContentText("Each player takes turns.");
-                        alert.showAndWait();
-
-                    }
-                });
-//                newGame.setOnMousePressed(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent event) {
-//                        humanHbox.getChildren().removeAll();
-//                        compHbox.getChildren().removeAll();
-//                        humanHand.clear();
-//                        computerHand.clear();
-//                        gameCoordinator.gameSetUp();
-//                        startOfGame();
-//                    }
-//                });
-
-
             }
         };
         timer.start();
 
+        rules.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Rules");
+                alert.setHeaderText("Rules of the Game");
+                alert.setContentText("Each player takes turns.");
+                alert.showAndWait();
 
+            }
+        });
 
-//        for (Tile tile : humanDiscard) {
-////            humanDiscardStack.setPrefSize(50, 50);
-//            humanDiscardStack.getChildren().add(new Tile(tile.getNum(), tile
-//                    .getColor()));
-//        }
-
-
-//        for (Tile tile : discardPile1) {
-//            Rectangle rectangle = new Rectangle(200, 600, 60, 100);
-//            rectangle.setStroke(Color.BLUE);
-//            tilePane = new StackPane();
-//            tilePane.setPrefSize(160, 600);
-//            tilePane.getChildren().add(rectangle);
-//        }
         vBox.setSpacing(200);
-        vBox.getChildren().addAll(rules, newGame);
+        vBox.getChildren().addAll(rules);
 
         vBox.setPrefSize(150, 300);
+        vBox.setBackground(new Background(new BackgroundFill(Color
+                .rgb(72, 103, 178),CornerRadii.EMPTY, Insets.EMPTY)));
         vBox.setBorder(new Border(new BorderStroke(Color.RED,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                 .DEFAULT, Insets.EMPTY)));

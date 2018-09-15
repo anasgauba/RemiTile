@@ -2,7 +2,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -37,22 +36,10 @@ public class Tile extends Pane {
         gc.setFill(colors.toColor());
         gc.fillText(num.toString(), Math.round(canvas.getWidth()/2 - 5), Math
                 .round(canvas.getHeight()/2) - 3);
-//        this.setOnMousePressed(new EventHandler<MouseEvent>() {
-//            int num=0;
-//            @Override
-//            public void handle(MouseEvent event) {
-//                //gameCoordinator.tileClick(tileNums.toString(), colors
-//                        //.toString());
-//                System.out.println("I am clicked");
-//            }
-//        });
-//        gc.setStroke(Color.BLACK);
         this.setPrefSize(60, 100);
         this.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                 .DEFAULT, Insets.EMPTY)));
-//        this.setBackground(new Background(new BackgroundFill(Color.BLUE,
-//                CornerRadii.EMPTY, Insets.EMPTY)));
         this.getChildren().add(canvas);
     }
 
