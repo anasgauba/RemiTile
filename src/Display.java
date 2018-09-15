@@ -62,9 +62,6 @@ public class Display extends Application {
             humanHbox.getChildren().add(new StackPane(new Tile(humanHand.get(i)
                     .getNum(),
                     humanHand.get(i).getColor())));
-            humanHbox.setBorder(new Border(new BorderStroke(Color.GREEN,
-                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
-                    .DEFAULT, Insets.EMPTY)));
         }
         humanHbox.setBackground(new Background(new BackgroundFill(Color
                 .rgb(72, 103, 178), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -91,7 +88,7 @@ public class Display extends Application {
         for (Tile tile : tilePool) {
             tilePane.setPrefSize(160, 300);
             tilePane.setPadding(new Insets(246, 58,50,40));
-            tilePane.setBorder(new Border(new BorderStroke(Color.RED,
+            tilePane.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                     .DEFAULT, Insets.EMPTY)));
             tilePane.getChildren().add(new Tile(tile.getNum(), tile.getColor()));
@@ -106,7 +103,7 @@ public class Display extends Application {
     private void drawHumanDiscardStack() {
         for (Tile tile : humanDiscard) {
             humanDiscardStack.setPrefSize(150, 100);
-            humanDiscardStack.setBorder(new Border(new BorderStroke(Color.YELLOW,
+            humanDiscardStack.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                     .DEFAULT, Insets.EMPTY)));
             humanDiscardStack.getChildren().add(new Tile(tile.getNum(), tile.getColor()));
@@ -119,7 +116,7 @@ public class Display extends Application {
         for (Tile tile : compDiscard) {
             compDiscardStack.setPrefSize(150, 100);
             compDiscardStack.setBorder(new Border(new BorderStroke(Color
-                    .YELLOW,
+                    .BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                     .DEFAULT, Insets.EMPTY)));
             compDiscardStack.getChildren().add(new Tile(tile.getNum(),
@@ -175,14 +172,14 @@ public class Display extends Application {
         humanDiscardStack.setBackground(new Background(new BackgroundFill(Color
                 .rgb(72, 103, 178),CornerRadii.EMPTY, Insets.EMPTY)));
         humanDiscardStack.setPrefSize(150, 100);
-        humanDiscardStack.setBorder(new Border(new BorderStroke(Color.YELLOW,
+        humanDiscardStack.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                 .DEFAULT, Insets.EMPTY)));
 
         compDiscardStack.setBackground(new Background(new BackgroundFill(Color
                 .rgb(72, 103, 178),CornerRadii.EMPTY, Insets.EMPTY)));
         compDiscardStack.setPrefSize(150, 100);
-        compDiscardStack.setBorder(new Border(new BorderStroke(Color.RED,
+        compDiscardStack.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                 .DEFAULT, Insets.EMPTY)));
 
@@ -284,7 +281,7 @@ public class Display extends Application {
         vBox.setPrefSize(150, 300);
         vBox.setBackground(new Background(new BackgroundFill(Color
                 .rgb(72, 103, 178),CornerRadii.EMPTY, Insets.EMPTY)));
-        vBox.setBorder(new Border(new BorderStroke(Color.RED,
+        vBox.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                 .DEFAULT, Insets.EMPTY)));
 

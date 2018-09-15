@@ -57,6 +57,7 @@ public class GameCoordinator {
             System.out.println("human hand ");
             System.out.println(humanPlayer.hand);
             System.out.println("run is " + isRun(humanPlayer.hand));
+            System.out.println("set is " + isSet(humanPlayer.hand));
         }
 
         for (int j = 0; j < 14; j++) {
@@ -225,6 +226,11 @@ public class GameCoordinator {
         }
     }
 
+    /**
+     *
+     * @param hand
+     * @return
+     */
     public boolean isRun(TileCards hand) {
         int count = 0;
         boolean run = false;
@@ -264,6 +270,11 @@ public class GameCoordinator {
         return run;
     }
 
+    /**
+     *
+     * @param hand
+     * @return
+     */
     public boolean isSet(TileCards hand) {
         int count = 0;
         boolean set = false;
