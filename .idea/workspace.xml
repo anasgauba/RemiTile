@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca3940ae-9896-4aee-84ce-95ed51aaa7e6" name="Default" comment="" />
+    <list default="true" id="ca3940ae-9896-4aee-84ce-95ed51aaa7e6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/RemiTileBasicRulesGUI.jar" afterPath="$PROJECT_DIR$/RemiTileBasicRulesGUI.jar" />
+      <change beforePath="$PROJECT_DIR$/src/GameCoordinator.java" afterPath="$PROJECT_DIR$/src/GameCoordinator.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,18 +40,18 @@
               <caret line="305" column="5" lean-forward="false" selection-start-line="305" selection-start-column="5" selection-end-line="305" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#910#911#0" expanded="true" />
-                <element signature="e#943#944#0" expanded="true" />
-                <element signature="e#1031#1032#0" expanded="true" />
-                <element signature="e#1063#1064#0" expanded="true" />
-                <element signature="e#2229#2230#0" expanded="true" />
-                <element signature="e#2266#2267#0" expanded="true" />
-                <element signature="e#2547#2548#0" expanded="true" />
-                <element signature="e#2588#2589#0" expanded="true" />
-                <element signature="e#2707#2708#0" expanded="true" />
-                <element signature="e#2748#2749#0" expanded="true" />
-                <element signature="e#4602#4603#0" expanded="true" />
-                <element signature="e#4656#4657#0" expanded="true" />
+                <element signature="e#911#912#0" expanded="true" />
+                <element signature="e#944#945#0" expanded="true" />
+                <element signature="e#1032#1033#0" expanded="true" />
+                <element signature="e#1064#1065#0" expanded="true" />
+                <element signature="e#2230#2231#0" expanded="true" />
+                <element signature="e#2267#2268#0" expanded="true" />
+                <element signature="e#2548#2549#0" expanded="true" />
+                <element signature="e#2589#2590#0" expanded="true" />
+                <element signature="e#2708#2709#0" expanded="true" />
+                <element signature="e#2749#2750#0" expanded="true" />
+                <element signature="e#4603#4604#0" expanded="true" />
+                <element signature="e#4657#4658#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -256,7 +260,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Display">
+  <component name="RunManager" selected="Application.GameCoordinator">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -417,9 +421,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Display" />
-        <item index="1" class="java.lang.String" itemvalue="Application.TilePool" />
-        <item index="2" class="java.lang.String" itemvalue="Application.GameCoordinator" />
+        <item index="0" class="java.lang.String" itemvalue="Application.GameCoordinator" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Display" />
+        <item index="2" class="java.lang.String" itemvalue="Application.TilePool" />
         <item index="3" class="java.lang.String" itemvalue="Application.DiscardPile" />
         <item index="4" class="java.lang.String" itemvalue="Application.AsciiArt" />
       </list>
@@ -634,18 +638,18 @@
           <caret line="144" column="50" lean-forward="false" selection-start-line="144" selection-start-column="50" selection-end-line="144" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#943#944#0" expanded="true" />
-            <element signature="e#1031#1032#0" expanded="true" />
-            <element signature="e#1063#1064#0" expanded="true" />
-            <element signature="e#2229#2230#0" expanded="true" />
-            <element signature="e#2266#2267#0" expanded="true" />
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2707#2708#0" expanded="true" />
-            <element signature="e#2748#2749#0" expanded="true" />
-            <element signature="e#4602#4603#0" expanded="true" />
-            <element signature="e#4656#4657#0" expanded="true" />
+            <element signature="e#911#912#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1064#1065#0" expanded="true" />
+            <element signature="e#2230#2231#0" expanded="true" />
+            <element signature="e#2267#2268#0" expanded="true" />
+            <element signature="e#2548#2549#0" expanded="true" />
+            <element signature="e#2589#2590#0" expanded="true" />
+            <element signature="e#2708#2709#0" expanded="true" />
+            <element signature="e#2749#2750#0" expanded="true" />
+            <element signature="e#4603#4604#0" expanded="true" />
+            <element signature="e#4657#4658#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -656,18 +660,18 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#943#944#0" expanded="true" />
-            <element signature="e#1031#1032#0" expanded="true" />
-            <element signature="e#1063#1064#0" expanded="true" />
-            <element signature="e#2229#2230#0" expanded="true" />
-            <element signature="e#2266#2267#0" expanded="true" />
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2707#2708#0" expanded="true" />
-            <element signature="e#2748#2749#0" expanded="true" />
-            <element signature="e#4602#4603#0" expanded="true" />
-            <element signature="e#4656#4657#0" expanded="true" />
+            <element signature="e#911#912#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1064#1065#0" expanded="true" />
+            <element signature="e#2230#2231#0" expanded="true" />
+            <element signature="e#2267#2268#0" expanded="true" />
+            <element signature="e#2548#2549#0" expanded="true" />
+            <element signature="e#2589#2590#0" expanded="true" />
+            <element signature="e#2708#2709#0" expanded="true" />
+            <element signature="e#2749#2750#0" expanded="true" />
+            <element signature="e#4603#4604#0" expanded="true" />
+            <element signature="e#4657#4658#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -943,18 +947,18 @@
           <caret line="305" column="5" lean-forward="false" selection-start-line="305" selection-start-column="5" selection-end-line="305" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#943#944#0" expanded="true" />
-            <element signature="e#1031#1032#0" expanded="true" />
-            <element signature="e#1063#1064#0" expanded="true" />
-            <element signature="e#2229#2230#0" expanded="true" />
-            <element signature="e#2266#2267#0" expanded="true" />
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2707#2708#0" expanded="true" />
-            <element signature="e#2748#2749#0" expanded="true" />
-            <element signature="e#4602#4603#0" expanded="true" />
-            <element signature="e#4656#4657#0" expanded="true" />
+            <element signature="e#911#912#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1064#1065#0" expanded="true" />
+            <element signature="e#2230#2231#0" expanded="true" />
+            <element signature="e#2267#2268#0" expanded="true" />
+            <element signature="e#2548#2549#0" expanded="true" />
+            <element signature="e#2589#2590#0" expanded="true" />
+            <element signature="e#2708#2709#0" expanded="true" />
+            <element signature="e#2749#2750#0" expanded="true" />
+            <element signature="e#4603#4604#0" expanded="true" />
+            <element signature="e#4657#4658#0" expanded="true" />
           </folding>
         </state>
       </provider>

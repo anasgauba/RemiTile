@@ -21,7 +21,7 @@ public class GameCoordinator {
     private ComputerPlayer computerPlayer = new ComputerPlayer(this);
 
     private boolean turn;
-    boolean debug = true;
+    boolean debug = false;
 
     /**
      * Sets the turn = false, meaning its human
