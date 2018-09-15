@@ -5,7 +5,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -14,6 +13,11 @@ import javafx.stage.Stage;
 import java.util.LinkedList;
 
 /**
+ * GUI class for the game Remi Tile to show the game on the
+ * screen. Takes the information from the gameCoordinator and draws
+ * the layouts on the screen. Used borderpane for the parent node, have
+ * hbox's for human and computer sides, used stackpanes for the discard area,
+ * tilePool. For buttons and text, used vbox.
  * @version date: 2018-09-04
  * @author Anas Farooq Gauba
  */
@@ -207,7 +211,7 @@ public class Display extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (!gameCoordinator.turn) {
+                if (!gameCoordinator.getTurn()) {
                     tilePane.setOnMousePressed(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -219,7 +223,7 @@ public class Display extends Application {
                             drawTilePool();
                             humanHbox.getChildren().remove(6);
                             drawHumanDiscardStack();
-                            gameCoordinator.turn = true;
+//                            gameCoordinator.getTurn() = true;
                         }
                     });
                     compDiscardStack.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -233,7 +237,7 @@ public class Display extends Application {
                             drawCompDiscardStack();
                             humanHbox.getChildren().remove(6);
 
-                            gameCoordinator.turn = true;
+//                            gameCoordinator.turn = true;
                         }
                     });
                     humanHbox.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -248,7 +252,8 @@ public class Display extends Application {
                     compHbox.getChildren().add(new Tile(computerHand.getLast
                             ().getNum(), computerHand.getLast().getColor()));
                     tilePane.getChildren().remove(tilePool.removeLast());
-                    compHbox.getChildren().remove(gameCoordinator.computerDiscarded());
+                    compHbox.getChildren().remove(gameCoordinator
+                            .computerDiscarded()+1);
                     drawTilePool();
                     drawCompDiscardStack();
                 }

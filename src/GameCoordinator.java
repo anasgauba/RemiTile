@@ -1,33 +1,49 @@
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
-import jdk.nashorn.internal.runtime.Debug;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
 /**
+ * Game logic class for the console based version.
+ * Creates instances of players, discard piles, tilePool and
+ * based on the turn, let the player choose where to get the tile from and
+ * what tile to discard. Also, checks the tiles for runs and sets.
  * @version date: 2018-09-04
  * @author Anas Farooq Gauba
  */
 public class GameCoordinator {
 
-    TilePool tilePool = new TilePool();
-    TileCards discardPile1 = new TileCards();
-    TileCards discardPile2 = new TileCards();
+    private TilePool tilePool = new TilePool();
+    private TileCards discardPile1 = new TileCards();
+    private TileCards discardPile2 = new TileCards();
 
-    Player humanPlayer = new Player(this);
+    private Player humanPlayer = new Player(this);
 
-    ComputerPlayer computerPlayer = new ComputerPlayer(this);
+    private ComputerPlayer computerPlayer = new ComputerPlayer(this);
 
-    boolean turn;
+    private boolean turn;
     boolean debug = true;
 
+    /**
+     * Sets the turn = false, meaning its human
+     * player's turn when the game starts.
+     */
     public GameCoordinator() {
         this.turn = false;
     }
 
+    /**
+     *
+     * @return who's turn it is.
+     */
+    public boolean getTurn() {
+        return this.turn;
+    }
 
+    /**
+     * Initial game setup, creates a deck of tiles.
+     * Give 14 tiles to each player. First, gives the turn
+     * to human.
+     */
     public void gameSetUp() {
         tilePool.fillTile();
         if (debug ) {
@@ -42,7 +58,6 @@ public class GameCoordinator {
             System.out.println(humanPlayer.hand);
             System.out.println("run is " + isRun(humanPlayer.hand));
         }
-//        System.out.println("set is " + isSet(humanPlayer.hand));
 
         for (int j = 0; j < 14; j++) {
             computerPlayer.addToHand(tilePool.getTile());
@@ -57,26 +72,51 @@ public class GameCoordinator {
         turn = false;
     }
 
+    /**
+     *
+     * @returns the tilePool list.
+     */
     public LinkedList<Tile> getTilePool() {
         return tilePool.tiles;
     }
 
+    /**
+     *
+     * @returns human player's hand list.
+     */
     public LinkedList<Tile> getHumanPlayersHand() {
         return humanPlayer.getMyHand();
     }
 
+    /**
+     *
+     * @returns computer player's hand list.
+     */
     public LinkedList<Tile> getDiscardPile1() {
         return discardPile1.tiles;
     }
 
+    /**
+     *
+     * @returns computer player's discardPile.
+     */
     public LinkedList<Tile> getDiscardPile2() {
         return discardPile2.tiles;
     }
 
+    /**
+     *
+     * @returns human player's discardPile.
+     */
     public LinkedList<Tile> getComputerPlayersHand() {
         return computerPlayer.getMyHand();
     }
 
+    /**
+     * Check if the tilePool is empty. If it is, loop through
+     * both human's and computer's discard piles and put everything back
+     * into tilePool. Shuffles in the end.
+     */
     public void isTilePoolEmpty() {
         if (tilePool.isEmpty()) {
             while (!(discardPile1.isEmpty())) {
@@ -89,11 +129,15 @@ public class GameCoordinator {
         }
     }
 
-    public int computerDiscarded() {
-        return computerPlayer.discardTheTile();
-    }
 
-
+    /**
+     * Based on the player, if it's human, it discards the
+     * given tile into discardPile1. if it's computer, it discards
+     * the given tile into discardPile2. After the player discarded,
+     * the turn switches.
+     * @param tile to be discard by a player.
+     * @param player who's discarding.
+     */
     public void discard(Tile tile, Player player) {
         if (player == humanPlayer) {
             discardPile1.addTile(tile);
@@ -116,11 +160,24 @@ public class GameCoordinator {
         }
     }
 
+    /**
+     *
+     * @returns the index of the tile that was discarded.
+     */
+    public int computerDiscarded() {
+        return computerPlayer.discardTheTile();
+    }
+
+    /**
+     * Based on the turn, the player either has the option
+     * of choosing from tilePool or from discard of the other player.
+     *
+     * @param str options for the player.
+     */
     public void playerOptions(String str) {
         if (str == "tilePool") {
             if (turn) {
                 computerPlayer.addToHand(tilePool.getTile());
-//                computerPlayer.discardTheTile();
             }
             else {
                 humanPlayer.addToHand(tilePool.getTile());
@@ -130,7 +187,6 @@ public class GameCoordinator {
         else if (str == "discard") {
             if (turn) {
                 computerPlayer.addToHand(discardPile1.getTile());
-//                computerPlayer.discardTheTile();
             }
             else {
                 humanPlayer.addToHand(discardPile2.getTile());
@@ -221,7 +277,6 @@ public class GameCoordinator {
                     set = true;
                 }
             }
-//            count = 0;
         }
         return set;
     }

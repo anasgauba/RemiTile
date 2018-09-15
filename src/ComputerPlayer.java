@@ -15,7 +15,9 @@ public class ComputerPlayer extends Player {
         super(gameCoordinator);
     }
 
-
+    /**
+     * The computer player is dumb and always chooses from tilePool.
+     */
     public void makeMove() {
         gameCoordinator.playerOptions("tilePool");
     }

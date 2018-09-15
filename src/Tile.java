@@ -14,7 +14,6 @@ import javafx.scene.paint.Color;
 public class Tile extends Pane {
     private TileNums tileNums;
     private TileColors colors;
-//    static int num= 0;
     private boolean tileFace;
     GameCoordinator gameCoordinator;
 
