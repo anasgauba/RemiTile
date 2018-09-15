@@ -227,9 +227,13 @@ public class GameCoordinator {
     }
 
     /**
-     *
-     * @param hand
-     * @return
+     * First, sort the tiles by numbers and then sort it based
+     * on the same color. Checks if the tile is exactly less than
+     * the next tile and the color is same, if it is then add the count.
+     * if count gets to 2, means that we have now compared at least three tiles
+     * and therefore we have a run.
+     * @param hand to check for run.
+     * @return true/false if is run or not.
      */
     public boolean isRun(TileCards hand) {
         int count = 0;
@@ -271,9 +275,13 @@ public class GameCoordinator {
     }
 
     /**
-     *
-     * @param hand
-     * @return
+     * First, sort the tiles by same numbers.
+     * Then, loop through the handSize - 1 times and
+     * check if the num at i is same as i + 1 and also if the
+     * color of the tile is different, if the condition meets then
+     * we have a set.
+     * @param hand to check for run.
+     * @return true/false if is set or not.
      */
     public boolean isSet(TileCards hand) {
         int count = 0;

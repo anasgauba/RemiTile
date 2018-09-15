@@ -15,9 +15,17 @@ RemiTile Game:
         to true.
 
 
-
 Some Bugs:
+ -After playing the game for few mins, when the human clicks the discard pile of
+  computer, it adds it fine to the human hand but for some reason, the
+  computer player doesn't discard the tiles sometime when his next turn.
 
+ -The human player automatically chooses the tile to discard, (it wouldve been
+  fixed by just adding a mouse event on the humanHbox in display.java but
+  didn't get a chance, the mouse event is there on line 239 in display)
+
+ -In game coordinator, it doesn't account for the joker and a condition for 1
+  to be added as a 14. 
 
 Things Not Implemented:
   -Advance Rules with melding.
