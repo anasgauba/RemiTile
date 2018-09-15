@@ -26,7 +26,8 @@ Some Bugs:
 
  -In game coordinator, it doesn't account for the joker and a condition for 1
   to be added as a 14.
- -Player scores are not hooked up.  
+  
+ -Player scores are not hooked up.
 
 Things Not Implemented:
   -Advance Rules with melding.
