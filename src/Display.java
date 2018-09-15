@@ -233,11 +233,10 @@ public class Display extends Application {
                             humanHbox.getChildren().add(new Tile(humanHand.getLast()
                                     .getNum(),
                                     humanHand.getLast().getColor()));
+                            humanHbox.getChildren().remove(6);
                             compDiscardStack.getChildren().remove(compDiscard.removeLast());
                             drawCompDiscardStack();
-                            humanHbox.getChildren().remove(6);
 
-//                            gameCoordinator.turn = true;
                         }
                     });
                     humanHbox.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -267,7 +266,13 @@ public class Display extends Application {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Rules");
                 alert.setHeaderText("Rules of the Game");
-                alert.setContentText("Each player takes turns.");
+                alert.setContentText("Each player takes turns. Each player" +
+                        "adds the tile either from discard pile of other " +
+                        "player" +
+                        "or from tilePool and then discards one tile from" +
+                        "his hand. A player wins the game if it builds a " +
+                        "confuguration of sets and runs with only 1 tile " +
+                        "remaining the discard pile.");
                 alert.showAndWait();
 
             }
@@ -282,9 +287,6 @@ public class Display extends Application {
         vBox.setBorder(new Border(new BorderStroke(Color.RED,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths
                 .DEFAULT, Insets.EMPTY)));
-
-
-
 
         root.getChildren().addAll(borderPane);
 
